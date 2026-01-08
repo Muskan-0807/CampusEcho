@@ -20,6 +20,8 @@ Base URL :`/api`
 - GET   `/issues`  
 - GET   `/issues/my`  
 
+## Issue Actions (Authority Only)
+
 - PATCH  `/issues/:id/status`  
 - DELETE `/issues/:id`  
 
