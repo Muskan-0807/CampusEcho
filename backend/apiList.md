@@ -4,30 +4,30 @@ Base URL :`/api`
 
 ## 🔐 Authentication
 
-POST  `/auth/register`
-POST  `/auth/login`
-POST  `/auth/logout`
+- POST  `/auth/register`
+- POST  `/auth/login`
+- POST  `/auth/logout`
 
 ## 👤 Profile
 
-GET  `/profile`
-PUT  `/profile`
-PUT  `/profile/change-password`
+- GET  `/profile`
+- PUT  `/profile`
+- PUT  `/profile/change-password`
 
 ## 📝 Issues
 
-POST  `/issues`  
-GET   `/issues`  
-GET   `/issues/my`  
+- POST  `/issues`  
+- GET   `/issues`  
+- GET   `/issues/my`  
 
-PATCH  `/issues/:id/status`  
-DELETE `/issues/:id`  
+- PATCH  `/issues/:id/status`  
+- DELETE `/issues/:id`  
 
 ## 💬 Issue Interactions (Student Only)
 
-POST  `/issues/:id/comment`  
-POST  `/issues/:id/agree`  
-POST  `/issues/:id/disagree`
+- POST  `/issues/:id/comment`  
+- POST  `/issues/:id/agree`  
+- POST  `/issues/:id/disagree`
 
 ## 🔐 Access Control
 
