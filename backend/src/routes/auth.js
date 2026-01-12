@@ -64,7 +64,13 @@ authRouter.post("/register", async (req, res) => {
       },
     });
   } catch (error) {
-    console.error("Registration error:", error);
+  
+    console.error("Registration error message:", error.message);
+    if(error.message){
+      return res.status(400).json({
+        message: error.message});
+    }
+
     res.status(500).json({ message: "Server error during registration" });
   }
 });
@@ -76,7 +82,7 @@ authRouter.post("/login", async (req, res) => {
     const user = await User.findOne({ email });
 
     if (!user) {
-      throw new Error("Invalid credentials");
+      throw new Error("Invalid Credentials");
     }
 
     const isPasswordValid = await user.validatePassword(password);
@@ -95,6 +101,7 @@ authRouter.post("/login", async (req, res) => {
           id: user._id,
           email: user.email,
           role: user.role,
+          firstName:user.firstName,
         },
       });
     } else {
