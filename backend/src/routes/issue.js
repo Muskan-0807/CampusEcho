@@ -91,6 +91,7 @@ issueRouter.get("/", authMiddleware, async (req, res) => {
         issue.studentId?.toString() === req.user._id.toString(),
     }));
 
+
     res.status(200).json({
       count: responseIssues.length,
       issues: responseIssues,
@@ -166,17 +167,18 @@ issueRouter.post('/:id/agree', authMiddleware, async (req, res) => {
     if (!issue) {
       return res.status(404).json({ message: 'Issue not found' });
     }
-    const userId = req.user._id;
+    const userId = req.user._id.toString();
+        issue.disagrees = issue.disagrees.filter(id => id.toString() !== userId);
 
-    issue.disagrees = issue.disagrees.filter(id => id.toString() !== userId.toString);
-
-    if (!issue.agrees.includes(userId)) {
+   if (!issue.agrees.some(id=>id.toString()===userId)) {
       issue.agrees.push(userId);
     }
 
     await issue.save();
+    
 
-    res.json({
+    return res.status(200).json({
+     
       message: 'Agreement recorded',
       agreeCount: issue.agrees.length,
       disagreeCount: issue.disagrees.length
@@ -198,19 +200,19 @@ issueRouter.post('/:id/disagree', authMiddleware, async (req, res) => {
       return res.status(404).json({ message: 'Issue not found' });
     }
 
-    const userId = req.user._id;
+    const userId = req.user._id.toString();
 
     // Remove from agrees if present
-    issue.agrees = issue.agrees.filter(id => id.toString() !== userId.toString());
+    issue.agrees = issue.agrees.filter(id => id.toString() !== userId);
 
     // Add to disagrees if not already present
-    if (!issue.disagrees.includes(userId)) {
+    if (!issue.disagrees.some(id=>id.toString()===userId)) {
       issue.disagrees.push(userId);
     }
 
     await issue.save();
 
-    res.json({
+    res.status(200).json({
       message: 'Disagreement recorded',
       agreeCount: issue.agrees.length,
       disagreeCount: issue.disagrees.length
@@ -241,13 +243,15 @@ issueRouter.post('/:id/comment', authMiddleware, async (req, res) => {
     // Add comment (anonymous for students in public view)
     issue.comments.push({
       userId: req.user._id,
-      text: text.trim()
+      text: text.trim(),
+      
     });
 
     await issue.save();
 
-    res.json({
+    res.status(200).json({
       message: 'Comment added successfully',
+      comments:issue.comments,
       
     });
   } catch (error) {
@@ -255,7 +259,7 @@ issueRouter.post('/:id/comment', authMiddleware, async (req, res) => {
     res.status(500).json({ message: 'Server error while adding comment' });
   }
 });
-
++
 issueRouter.delete('/:id', authMiddleware, adminMiddleware, async (req, res) => {
   try {
     const issue = await Issue.findByIdAndDelete(req.params.id);

@@ -3,6 +3,7 @@ const authRouter = express.Router();
 const bcrypt = require("bcrypt");
 const User = require("../models/User");
 const { validateRegistrationData } = require("../utils/validation");
+const { authMiddleware } = require("../middleware/auth");
 
 authRouter.post("/register", async (req, res) => {
   try {
@@ -56,6 +57,7 @@ authRouter.post("/register", async (req, res) => {
       user: {
         id: savedUser._id,
         firstName: savedUser.firstName,
+        lastName: savedUser.lastName,
         email: savedUser.email,
         role: savedUser.role,
         regNumber: savedUser.regNumber,
@@ -136,6 +138,17 @@ authRouter.post("/logout", (req,res)=> {
     });
     
   }
+});
+
+authRouter.get("/me", authMiddleware, (req, res) => {
+  res.status(200).json({
+    user: {
+      id: req.user._id,
+      email: req.user.email,
+      role: req.user.role,
+      firstName: req.user.firstName,
+    },
+  });
 });
 
 module.exports = authRouter;
