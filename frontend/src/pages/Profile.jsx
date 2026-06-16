@@ -46,7 +46,7 @@ const Profile = () => {
     setError("");
     setSuccess("");
     try {
-      const res = await axios.patch(
+      const res = await axios.put(
         BASE_URL2 + "/update",
         {
           firstName,
