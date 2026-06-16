@@ -47,10 +47,12 @@ authRouter.post("/register", async (req, res) => {
     const savedUser = await user.save();
 
     const token = savedUser.getJWT();
-    res.cookie("token", token, {
-      httpOnly: true,
-      expires: new Date(Date.now() + 8 * 3600000),
-    });
+res.cookie("token", token, {
+  httpOnly: true,
+  secure: true,
+  sameSite: "none",
+  expires: new Date(Date.now() + 8 * 3600000),
+});
     res.status(201).json({
       message: "Registration successful",
       token,
@@ -94,8 +96,11 @@ authRouter.post("/login", async (req, res) => {
 
       //add the token to cookie and send the response back to the user
       res.cookie("token", token, {
-        expires: new Date(Date.now() + 8 * 3600000),
-      });
+  httpOnly: true,
+  secure: true,
+  sameSite: "none",
+  expires: new Date(Date.now() + 8 * 3600000),
+});
       res.json({
         message: "Login successful",
         token,
@@ -122,11 +127,11 @@ authRouter.post("/login", async (req, res) => {
 
 authRouter.post("/logout", (req,res)=> {
   try {
-    res.cookie("token", "", {
-      httpOnly:true,
-      expies: new Date(0),
-
-    });
+res.clearCookie("token", {
+  httpOnly: true,
+  secure: true,
+  sameSite: "none",
+});
 
     return res.status(200).json({
       message:"Logout successful",
