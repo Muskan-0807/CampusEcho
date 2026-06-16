@@ -10,6 +10,7 @@ import Dashboard from "./pages/Dashboard";
 import NewIssue from "./pages/NewIssue";
 import MyIssues from "./pages/MyIssues";
 import AllIssues from "./pages/AllIssues";
+import { Navigate } from "react-router-dom";
 
 function App() {
   return (
