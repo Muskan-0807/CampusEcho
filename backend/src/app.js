@@ -8,7 +8,8 @@ const cors= require("cors");
 
 
 app.use(cors({
-    origin:"http://localhost:5173",
+    origin:["http://localhost:5173",
+    "https://campus-echo-six.vercel.app"],
     credentials: true,
     methods:["GET","POST","put","PUT","DELETE","OPTIONS"]
 
