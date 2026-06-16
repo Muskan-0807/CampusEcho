@@ -29,7 +29,7 @@ const Login = () => {
           user: res.data.user,
         }),
       );
-      return navigate("/");
+      return navigate("/dashboard");
     } catch (err) {
       setError(err.response?.data?.message || "Login unsuccessfull");
     }

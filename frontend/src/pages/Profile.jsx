@@ -182,7 +182,7 @@ const Profile = () => {
         </div>
         <div className="mt-6 text-center">
           <button
-            onClick={() => navigate("/")}
+            onClick={() => navigate("/dashboard")}
             className="  bg-gray-800 hover:bg-gray-700 text-white py-2 rounded-md px-9"
           >
             Back to Home

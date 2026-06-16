@@ -31,18 +31,18 @@ const Navbar = () => {
     <nav className=" bg-gray-900 text-white min-w-full">
       <div className=" mx-auto px-2 py-2 md:px-8 md:py-5 flex items-center justify-between ">
 
-        <Link to="/" className="font-semibold font-serif text-md md:text-2xl">
+        <Link to="/dashboard" className="font-semibold font-serif text-md md:text-2xl">
           CampusEcho
         </Link>
         {user.role === "student" && ( <div className="flex items-center gap-2 md:gap-15 lg:gap-15 text-sm md:text-lg px-2 md:px-0">
     
-              <Link to="/" className="cursor-pointer hover:text-indigo-300 ">Dashboard</Link>
+              <Link to="/dashboard" className="cursor-pointer hover:text-indigo-300 ">Dashboard</Link>
               <Link to="/allissues" className="cursor-pointer hover:text-indigo-300">All Issues</Link>
               <Link to="/myissues" className="cursor-pointer hover:text-indigo-300">My Issues</Link>
         </div> )}
         {user.role ==="admin" && (
           <div> 
-          <Link to="/" className="cursor-pointer hover:text-indigo-300">All Issues</Link>
+          <Link to="/dashboard" className="cursor-pointer hover:text-indigo-300">All Issues</Link>
 
           </div>
 

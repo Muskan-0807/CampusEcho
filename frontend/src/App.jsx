@@ -17,19 +17,19 @@ function App() {
     <Provider store={appStore}>
       <BrowserRouter basename="/">
         <Routes>
-          <Route path="/login" element={<Login />}/>
-          <Route path="/register" element={<Register />}/>
-          
-          <Route path="/" element={<MainLayout/>} >
-            <Route index element={<Dashboard />}/>
+<Route path="/" element={<Navigate to="/login" replace />} />
 
-          <Route path="/profile" element={<Profile />}/>
-          <Route path="/change-password" element={<ChangePassword />}/>
-          <Route path="/newissue" element={<NewIssue/>} />
-          <Route path="/myissues" element={<MyIssues/>} />
-          <Route path="/allissues" element={<AllIssues/>} />
+<Route path="/login" element={<Login />} />
+<Route path="/register" element={<Register />} />
 
-          </Route>
+<Route element={<MainLayout />}>
+  <Route path="/dashboard" element={<Dashboard />} />
+  <Route path="/profile" element={<Profile />} />
+  <Route path="/change-password" element={<ChangePassword />} />
+  <Route path="/newissue" element={<NewIssue />} />
+  <Route path="/myissues" element={<MyIssues />} />
+  <Route path="/allissues" element={<AllIssues />} />
+</Route>
         </Routes>
       </BrowserRouter>
       </Provider>
