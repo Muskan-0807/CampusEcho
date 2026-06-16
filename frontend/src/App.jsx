@@ -19,11 +19,9 @@ function App() {
         <Routes>
           <Route path="/login" element={<Login />}/>
           <Route path="/register" element={<Register />}/>
-
-
+          
           <Route path="/" element={<MainLayout/>} >
             <Route index element={<Dashboard />}/>
-
 
           <Route path="/profile" element={<Profile />}/>
           <Route path="/change-password" element={<ChangePassword />}/>
@@ -32,8 +30,6 @@ function App() {
           <Route path="/allissues" element={<AllIssues/>} />
 
           </Route>
-          
-
         </Routes>
       </BrowserRouter>
       </Provider>

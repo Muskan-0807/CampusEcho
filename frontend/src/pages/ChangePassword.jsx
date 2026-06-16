@@ -21,7 +21,7 @@ const ChangePassword = () => {
     }
 
     try {
-      await axios.patch(
+      await axios.put(
         `${BASE_URL2}/change-password`,
         {
           oldPassword,
@@ -85,14 +85,14 @@ const ChangePassword = () => {
         <div className="flex gap-4 mt-4">
           <button
             onClick={handleUpdatePassword}
-            className="flex-1 bg-indigo-600 text-white py-2 rounded"
+            className="flex-1 bg-indigo-900 hover:bg-indigo-800 text-white py-2 rounded"
           >
             Update Password
           </button>
 
           <button
             onClick={() => navigate("/profile")}
-            className="flex-1 bg-gray-700 text-white py-2 rounded"
+            className="flex-1 bg-gray-700 hover:bg-indigo-700 text-white py-2 rounded"
           >
             Back
           </button>

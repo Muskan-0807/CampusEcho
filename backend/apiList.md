@@ -22,7 +22,7 @@ Base URL :`/api`
 
 ## Issue Actions (Authority Only)
 
-- PATCH  `/issues/:id/status`  
+- put  `/issues/:id/status`  
 - DELETE `/issues/:id`  
 
 ## 💬 Issue Interactions (Student Only)

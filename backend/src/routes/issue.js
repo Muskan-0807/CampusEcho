@@ -102,9 +102,10 @@ issueRouter.get("/", authMiddleware, async (req, res) => {
   }
 });
 
-issueRouter.patch("/:id/status",authMiddleware, adminMiddleware,
+issueRouter.put("/:id/status",authMiddleware, adminMiddleware,
   async (req, res) => {
     try {
+      console.log("put ROUTE HIT");
       const { status, adminResponse } = req.body;
 
       const issue = await Issue.findById(req.params.id);

@@ -39,24 +39,27 @@ const AllIssues = () => {
 
     return categoryMatch && statusMatch;
   });
+  if(loading){
+    return <h1 className="flex items-center justify-center text-xl font-bold min-h-screen"> Loading Issues....</h1>;
+  }
 
   return (
     <div className="max-w-6xl mx-auto px-6 py-6">
-      {/* Header */}
+  
       <div className="flex justify-between items-center bg-white rounded-lg p-4 mb-6">
         <h1 className="text-2xl font-semibold text-gray-800">
           Complaint Feed
         </h1>
         <button
           onClick={() => navigate("/newissue")}
-          className="px-4 py-2 bg-indigo-600 text-white rounded"
+          className="px-4 py-2 bg-indigo-900 hover:bg-indigo-800 text-white rounded"
         >
           + Post Complaint
         </button>
       </div>
 
-      {/* Filters */}
-      <div className="bg-white rounded-lg p-4 flex gap-4 items-center mb-6">
+      
+      <div className="bg-white rounded-lg p-4 flex flex-col md:flex-row gap-4 items-center mb-6">
         <div className="flex flex-col">
           <label className="text-sm text-gray-600 mb-1">
             Category
@@ -100,7 +103,7 @@ const AllIssues = () => {
         </div>
       </div>
 
-      {/* Content */}
+    
       {loading && <p>Loading complaints...</p>}
       {error && <p className="text-red-500">{error}</p>}
 
@@ -110,7 +113,7 @@ const AllIssues = () => {
         </div>
       )}
 
-      {/* Temporary Issue List (simple) */}
+    
       {filteredIssues.map((issue)=>(<IssueCard key={issue._id} issue={issue}/>))}
     </div>
   );

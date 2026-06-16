@@ -6,13 +6,18 @@ const app= express();
 const cookieParser = require("cookie-parser");
 const cors= require("cors");
 
+
 app.use(cors({
     origin:"http://localhost:5173",
     credentials: true,
+    methods:["GET","POST","put","PUT","DELETE","OPTIONS"]
 
 })
 );
-
+app.put("/put-test",(req,res)=>{
+    console.log("put TEST HIT");
+    res.json({success:true});
+});
 
 app.use(express.json());
 app.use(cookieParser());
@@ -28,6 +33,8 @@ const issueRouter = require("./routes/issue");
 app.use("/api/auth",authRouter);
 app.use("/api/profile",profileRouter);
 app.use("/api/issues",issueRouter);
+
+
 
 
 connectDB()

@@ -16,7 +16,7 @@ profileRouter.get("/me", authMiddleware, async (req, res) => {
   });
 });
 
-profileRouter.patch("/change-password", authMiddleware, async (req, res) => {
+profileRouter.put("/change-password", authMiddleware, async (req, res) => {
   try {
     if (req.user.role === "admin") {
       return res.status(403).json({
@@ -55,7 +55,7 @@ profileRouter.patch("/change-password", authMiddleware, async (req, res) => {
   }
 });
 
-profileRouter.patch("/update", authMiddleware, async (req, res) => {
+profileRouter.put("/update", authMiddleware, async (req, res) => {
   try {
     if (req.user.role === "admin") {
       return res.status(403).json({

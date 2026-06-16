@@ -12,7 +12,7 @@ const AdminIssueCard = ({ issue, onRefresh }) => {
     try {
       setLoading(true);
 
-      await axios.patch(`${BASE_URL3}/${issue._id}/status`, {
+      await axios.put(`${BASE_URL3}/${issue._id}/status`, {
         status,
         adminResponse: response,
         
@@ -23,7 +23,9 @@ const AdminIssueCard = ({ issue, onRefresh }) => {
       setIsEditing(false);
       onRefresh(); // refetch issues
     } catch (error) {
-      alert("Failed to update status");
+      console.log(error.response?.data);
+      console.log(error);
+      alert("Failed to update status"|| error.response?.data?.message);
     } finally {
       setLoading(false);
     }
@@ -50,14 +52,14 @@ const AdminIssueCard = ({ issue, onRefresh }) => {
   return (
     <div className="bg-white rounded-lg border p-5">
 
-      {/* TOP ROW */}
+    
       <div className="flex justify-between">
         <div className="flex gap-2">
-          <span className="text-xs px-2 py-1 bg-gray-200 rounded">
+          <span className="text-md px-2 py-1 bg-gray-200 rounded">
             {issue.category}
           </span>
 
-          <span className="text-xs px-2 py-1 bg-yellow-300 rounded">
+          <span className="text-md px-2 py-1 bg-yellow-300 rounded">
             {issue.status}
           </span>
         </div>
@@ -68,35 +70,33 @@ const AdminIssueCard = ({ issue, onRefresh }) => {
       </div>
 
       {/* TITLE */}
-      <h2 className="text-lg font-semibold mt-2">
+      <h2 className="text-xl font-semibold mt-2">
         {issue.title}
       </h2>
 
       {/* DESCRIPTION */}
-      <p className="text-gray-700 mt-1">
+      <p className="text-gray-700 text-md mt-1">
         {issue.description}
       </p>
 
       {/* CURRENT RESPONSE (only if exists & not editing) */}
       {!isEditing && issue.adminResponse && (
         <div className="mt-3 bg-green-100 border-l-4 border-green-600 p-3">
-          <p className="text-sm font-medium text-green-800">
+          <p className="text-md font-medium text-green-800">
             Current Response:
           </p>
-          <p className="text-sm text-green-700">
+          <p className="text-md text-green-700">
             {issue.adminResponse}
           </p>
         </div>
       )}
 
-      {/* COUNTS */}
+      
       <div className="text-sm text-gray-600 mt-3">
         Agrees: {issue.agreeCount} &nbsp;
         Disagrees: {issue.disagreeCount} &nbsp;
         Comments: {issue.comments.length}
       </div>
-
-      {/* ACTIONS */}
       {!isEditing && (
         <div className="flex gap-2 mt-4">
         <button
@@ -106,13 +106,13 @@ const AdminIssueCard = ({ issue, onRefresh }) => {
     ${
       issue.status === "Resolved"
         ? "bg-gray-400 cursor-not-allowed"
-        : "bg-blue-600 hover:bg-blue-700"
+        : "bg-blue-900 hover:bg-blue-800"
     }`}
 >
   Update Status
 </button>
 
-          <button className="px-4 py-1 bg-red-600 text-white rounded"
+          <button className="px-4 py-1 bg-red-800 hover:bg-red-700 text-white rounded"
           onClick={handleDelete}>
             Delete
           </button>
@@ -151,14 +151,14 @@ const AdminIssueCard = ({ issue, onRefresh }) => {
             <button
               onClick={handleSave}
               disabled={loading}
-              className="px-4 py-2 bg-green-600 text-white rounded"
+              className="px-4 py-2 bg-green-800 hover:bg-green-800 text-white rounded"
             >
               {loading ? "Saving..." : "Save Changes"}
             </button>
 
             <button
               onClick={() => setIsEditing(false)}
-              className="px-4 py-2 bg-gray-400 text-white rounded"
+              className="px-4 py-2 bg-gray-400 hover:bg-gray-300 text-white rounded"
             >
               Cancel
             </button>

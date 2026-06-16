@@ -68,7 +68,7 @@ const Register = () => {
   };
   return (
     <div className="min-h-screen bg-gray-900 flex items-center justify-center ">
-      <div className="w-full max-w-md bg-white rounded-lg p-8 mt-10 mb-10">
+      <div className="w-[90%] md:w-full max-w-md bg-white rounded-lg p-8 mt-10 mb-10">
         <h1 className="text-2xl font-semibold text-center text-indigo-900">
           Student Registration
         </h1>
@@ -181,7 +181,7 @@ const Register = () => {
         {error && <p className="text-red-500 text-sm mt-2">{error}</p>}
 
         <button
-          className="w-full bg-indigo-900 text-white py-2 rounded-md mt-6"
+          className="w-full bg-indigo-900 hover:bg-indigo-800 text-white py-2 rounded-md mt-6"
           onClick={handleRegistration}
         >
           Register

@@ -15,9 +15,13 @@ const Dashboard = () => {
     const [loading, setLoading] = useState(true);
 
   const getUser = async () => {
+    try{
     const res = await axios.get(BASE_URL2 + "/me", { withCredentials: true });
 
     dispatch(GetUser(res.data.user));
+    }catch(err){
+      console.log(err);
+    }
   };
   const user = useSelector((state) => state.auth.user);
 
@@ -58,6 +62,9 @@ const resolved = issues.filter(
   (issue) => issue.status === "Resolved"
 ).length;
 
+  if(loading){
+    return <h1 className="flex items-center justify-center text-xl font-bold min-h-screen"> Loading Dashboard....</h1>;
+  }
   return (
     <div className="max-w-7xl mx-auto px-6 py-6 flex flex-col gap-6">
       <div className="text-center ">
@@ -66,14 +73,15 @@ const resolved = issues.filter(
         </h1>
         {user && (
           <p className="text-sm text-gray-600 mt-1">
-            {user?.regNumber} | {user?.department} | {user?.year + "rd year"}
+            {user?.regNumber} | {user?.department} | {("year- "+user?.year)
+            }
           </p>
         )}
       </div>
         
       
 
-      <div className="flex gap-4">
+      <div className="flex flex-col md:flex-row gap-4">
         <StatCard title="Total" value={total} subtitle="Total Complaints" />
         <StatCard title="Pending" value={pending} subtitle="Pending" />
         <StatCard title="In Progress" value={inProgress} subtitle="In Progress" />

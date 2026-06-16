@@ -46,6 +46,9 @@ const resolvedCount = issues.filter(
 
     return categoryMatch && statusMatch;
   });
+  if(loading){
+    return <h1 className="flex items-center justify-center text-xl font-bold min-h-screen"> Loading ....</h1>;
+  }
 
   return (
     <div className="max-w-7xl mx-auto px-6 py-6 flex flex-col gap-6">
@@ -61,7 +64,7 @@ const resolvedCount = issues.filter(
       </div>
 
 
-      <div className="flex gap-4">
+      <div className="flex flex-col md:flex-row gap-4">
         <StatCard title="TOTAL" value={totalCount} />
         <StatCard title="PENDING" value={pendingCount} />
         <StatCard title="IN PROGRESS" value={inProgressCount} />
@@ -70,8 +73,8 @@ const resolvedCount = issues.filter(
 
     
       {/* Filters */}
-      <div className="bg-white rounded-lg p-4 flex gap-4 items-center mb-6">
-        <div className="flex flex-col">
+      <div className="bg-white rounded-lg p-4 flex flex-col md:flex-row gap-4 items-center mb-6">
+        <div className="flex flex-col ">
           <label className="text-sm text-gray-600 mb-1">
             Category
           </label>

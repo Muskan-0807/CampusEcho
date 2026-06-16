@@ -28,15 +28,15 @@ const Navbar = () => {
   }
 
   return (
-    <nav className=" bg-gray-900 text-white">
-      <div className=" mx-auto px-8 py-5 flex items-center justify-between">
+    <nav className=" bg-gray-900 text-white min-w-full">
+      <div className=" mx-auto px-2 py-2 md:px-8 md:py-5 flex items-center justify-between ">
 
-        <Link to="/" className="font-semibold text-2xl">
+        <Link to="/" className="font-semibold font-serif text-md md:text-2xl">
           CampusEcho
         </Link>
-        {user.role === "student" && ( <div className="flex items-center gap-15 text-lg">
+        {user.role === "student" && ( <div className="flex items-center gap-2 md:gap-15 lg:gap-15 text-sm md:text-lg px-2 md:px-0">
     
-              <Link to="/" className="cursor-pointer hover:text-indigo-300">Dashboard</Link>
+              <Link to="/" className="cursor-pointer hover:text-indigo-300 ">Dashboard</Link>
               <Link to="/allissues" className="cursor-pointer hover:text-indigo-300">All Issues</Link>
               <Link to="/myissues" className="cursor-pointer hover:text-indigo-300">My Issues</Link>
         </div> )}
@@ -50,8 +50,8 @@ const Navbar = () => {
         
         
         {user.role === "student" && (
-          <div className="relative text-lg">
-          <div className="cursor-pointer" onClick={()=> setOpen(!open)}>
+          <div className="relative text-sm md:text-lg">
+          <div className="cursor-pointer flex flex-row items-baseline" onClick={()=> setOpen(!open)}>
           
           <span> {user ? user.firstName : ""} </span>
           <span className="text-sm mx-2"> ▼ </span></div>

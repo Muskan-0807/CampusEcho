@@ -66,20 +66,20 @@ const IssueCard = ({ issue }) => {
   };
   return (
     <div className="bg-white rounded-lg p-5 border mb-5">
-      {/* Top row */}
+    
       <div className="flex justify-between items-start">
         <div className="flex gap-2">
-          <span className="text-xs px-2 py-1 bg-gray-300 rounded">
+          <span className="text-md px-2 py-1 bg-gray-300 rounded">
             {issue.category}
           </span>
 
-          <span className="text-xs px-2 py-1 bg-yellow-300 rounded">
+          <span className="text-md px-2 py-1 bg-yellow-300 rounded">
             {issue.status}
           </span>
 
           {issue.isMyIssue && (
-            <span className="text-xs px-2 py-1 bg-blue-300 rounded">
-              My Complaint
+            <span className="text-md px-2 py-1 bg-blue-300 rounded">
+              My
             </span>
           )}
         </div>
@@ -90,26 +90,26 @@ const IssueCard = ({ issue }) => {
       </div>
 
       {/* Title */}
-      <h2 className="text-lg font-semibold mt-2">{issue.title}</h2>
+      <h2 className="text-xl font-semibold mt-2">{issue.title}</h2>
 
       {/* Description */}
-      <p className="text-gray-700 mt-1">{issue.description}</p>
+      <p className="text-gray-700 text-lg mt-1">{issue.description}</p>
 
       {/* Management Response (if exists) */}
       {issue.adminResponse && (
         <div className="mt-4 bg-green-100 border-l-4 border-green-500 p-3">
-          <p className="text-sm font-medium text-green-800">
+          <p className="text-md font-medium text-green-800">
             Management Response:
           </p>
-          <p className="text-sm text-green-700">{issue.adminResponse}</p>
+          <p className="text-md text-green-700">{issue.adminResponse}</p>
         </div>
       )}
 
-      {/* Agree / Disagree / Comment count (UI only for now) */}
-      <div className="flex gap-3 mt-4 text-sm">
+      
+      <div className="flex gap-3 mt-4 text-sm items-baseline">
         <button
           onClick={handleAgree}
-          className={"px-3 py-1 border rounded hover:bg-green-300 text-black bg-gray-100 "}
+          className={"px-5 py-2 border rounded font-semibold hover:bg-green-600 text-black bg-gray-100 "}
   
         >
           Agree ({agreeCount})
@@ -117,23 +117,23 @@ const IssueCard = ({ issue }) => {
 
         <button
           onClick={handleDisagree}
-          className={"px-3 py-1 border rounded hover:bg-red-300 text-black bg-gray-100 "}
+          className={"px-5 py-2 border rounded font-semibold hover:bg-red-600 text-black bg-gray-100 "}
   
         >
           Disagree ({disagreeCount})
         </button>
 
-        <span className="px-3 py-1 text-gray-600">
+        <span className="px-3 py-1 text-gray-600 font-semibold">
           Comments: {commentsCount}
         </span>
       </div>
       {comments.length > 0 && (
         <div className="mt-4">
-          <p className="text-sm font-medium text-gray-700 mb-2">Comments:</p>
+          <p className="text-md font-medium text-gray-700 mb-2">Comments:</p>
 
           <div className="space-y-2">
             {comments.map((comment, index) => (
-              <div key={index} className="text-sm text-gray-800">
+              <div key={index} className="text-md text-gray-800">
                 <p>{comment.text}</p>
                 <p className="text-xs text-gray-500">
                   {new Date(comment.createdAt).toLocaleString()}
@@ -144,7 +144,7 @@ const IssueCard = ({ issue }) => {
         </div>
       )}
 
-      {/* Comment input (UI only) */}
+    
       <div className="mt-4 flex gap-2">
         <input
           type="text"
@@ -157,7 +157,7 @@ const IssueCard = ({ issue }) => {
         <button
           onClick={handleComment}
           disabled={loading}
-          className="px-4 py-2 bg-indigo-600 text-white rounded"
+          className="px-4 py-2 bg-indigo-900 hover:bg-indigo-800 text-white rounded"
         >
           Post
         </button>

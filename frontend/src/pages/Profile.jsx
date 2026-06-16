@@ -17,6 +17,7 @@ const Profile = () => {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [year, setYear] = useState("");
+  
 
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
@@ -69,11 +70,11 @@ const Profile = () => {
   };
 
   if (!profile) {
-    return <div className="text-center mt-10">Loading...</div>;
+    return <div className="text-center font-bold mt-10">Loading...</div>;
   }
   return (
     <div className="min-h-screen bg-linear-to-b from-indigo-100 to-indigo-300 flex justify-center pt-10">
-      <div className="w-full max-w-xl bg-white rounded-lg shadow p-6 mb-10">
+      <div className="w-[90%] md:w-full max-w-xl bg-white rounded-lg shadow p-6 mb-10">
         <h2 className="text-2xl font-semibold text-center text-indigo-900">
           Student Profile
         </h2>
@@ -148,14 +149,14 @@ const Profile = () => {
           {!isEdit ? (
             <>
               <button
-                className="flex-1 bg-indigo-900 text-white py-2 rounded-md"
+                className="flex-1 bg-indigo-900 hover:bg-indigo-800 text-white py-2 rounded-md"
                 onClick={() => setIsEdit(true)}
               >
                 Edit Profile
               </button>
 
               <button
-                className="flex-1 bg-gray-800 text-white py-2 rounded-md"
+                className="flex-1 bg-gray-800 hover:bg-gray-700 text-white py-2 rounded-md"
                 onClick={() => navigate("/change-password")}
               >
                 Change Password
@@ -182,7 +183,7 @@ const Profile = () => {
         <div className="mt-6 text-center">
           <button
             onClick={() => navigate("/")}
-            className="  bg-gray-800 text-white py-2 rounded-md px-9"
+            className="  bg-gray-800 hover:bg-gray-700 text-white py-2 rounded-md px-9"
           >
             Back to Home
           </button>

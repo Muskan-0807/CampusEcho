@@ -86,7 +86,7 @@ const NewIssue = () => {
           <div className="flex gap-4 mt-4">
             <button
               type="submit"
-              className="px-6 py-2 bg-indigo-900 text-white rounded cursor-pointer"
+              className="px-6 py-2 bg-indigo-900 hover:bg-indigo-800 text-white rounded cursor-pointer"
             >
               Post Issue
             </button>
